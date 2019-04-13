@@ -4,4 +4,29 @@
 
     <h1>Produtos</h1>
 
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Published?</th>
+            </tr>
+        </thead>
+        <tbody>
+            @each(product in products)
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.published }}</td>
+                </tr>
+            @else
+                <tr>
+                    <td colspan="6">
+                        Nenhum registro!
+                    </td>
+                </tr>
+            @endeach
+        </tbody>
+        </table>
+
 @endsection

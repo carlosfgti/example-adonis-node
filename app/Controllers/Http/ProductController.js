@@ -1,8 +1,12 @@
 'use strict'
 
+const Product = use('App/Models/Product')
+
 class ProductController {
-    index ({ request, response, view }) {
-        return view.render('products.index')
+    async index ({ request, response, view }) {
+        const products = await Product.all()        
+
+        return view.render('products.index', { products: products.toJSON() })
     }
 }
 
