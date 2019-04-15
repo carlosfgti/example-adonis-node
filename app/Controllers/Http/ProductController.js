@@ -18,7 +18,7 @@ class ProductController {
 
         data.published = data.published ? '1' : '0'
 
-        Product.create(data)
+        await Product.create(data)
 
         response.route('products.index')
     }
