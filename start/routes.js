@@ -19,4 +19,5 @@ const Route = use('Route')
 Route.on('/').render('welcome')
 
 Route.get('products', 'ProductController.index').as('products.index')
+Route.post('products', 'ProductController.store').as('products.store')
 Route.get('products/create', 'ProductController.create').as('products.create')
