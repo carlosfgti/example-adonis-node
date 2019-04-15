@@ -8,6 +8,10 @@ class ProductController {
 
         return view.render('products.index', { products: products.toJSON() })
     }
+
+    create ({ view }) {
+        return view.render('products.create')
+    }
 }
 
 module.exports = ProductController
