@@ -9,7 +9,7 @@
     <table class="table">
         <thead>
             <tr>
-            <th scope="col">Name</th>
+            <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Published?</th>
             </tr>
@@ -17,9 +17,9 @@
         <tbody>
             @each(product in products)
                 <tr>
-                    <td>{{ product.name }}</td>
+                    <td>{{ product.title }}</td>
                     <td>{{ product.description }}</td>
-                    <td>{{ product.published }}</td>
+                    <td>{{ product.published == '1' ? 'Published' : 'Draft' }}</td>
                 </tr>
             @else
                 <tr>
