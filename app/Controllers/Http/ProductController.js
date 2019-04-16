@@ -30,6 +30,17 @@ class ProductController {
             product: product.toJSON()
         })
     }
+
+    async update ({ params, request, response }) {
+        const data = request.only(['title', 'description', 'published']);
+        data.published = data.published ? '1' : '0'
+
+        await Product.query()
+                        .where('id', params.id)
+                        .update(data)
+
+        response.route('products.index')
+    }
 }
 
 module.exports = ProductController

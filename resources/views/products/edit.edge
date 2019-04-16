@@ -4,7 +4,7 @@
 
     <h1>Editar {{ product.title }}</h1>
 
-    <form action="" method="post">
+    <form action="/products/{{ product.id }}?_method=PUT" method="post">
         @include('products._partials.form')
     </form>
 

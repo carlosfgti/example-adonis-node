@@ -18,7 +18,8 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-Route.get('products/:id/edit', 'ProductController.edit').as('products.edit')
 Route.get('products', 'ProductController.index').as('products.index')
 Route.post('products', 'ProductController.store').as('products.store')
 Route.get('products/create', 'ProductController.create').as('products.create')
+Route.get('products/:id/edit', 'ProductController.edit').as('products.edit')
+Route.put('products/:id', 'ProductController.update').as('products.update')
