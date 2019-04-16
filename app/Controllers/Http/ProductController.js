@@ -22,6 +22,14 @@ class ProductController {
 
         response.route('products.index')
     }
+
+    async edit ({ params, view }) {
+        const product = await Product.find(params.id)
+
+        return view.render('products.edit', {
+            product: product.toJSON()
+        })
+    }
 }
 
 module.exports = ProductController
