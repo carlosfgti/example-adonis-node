@@ -10,4 +10,10 @@
         <li><b>Published</b>: {{ product.published == '1' ? 'Published' : 'Draft' }}</li>
     </ul>
 
+    <form action="/products/{{ product.id }}?_method=DELETE" method="post">
+        {{ csrfField() }}
+        
+        <button type="submit">Deletar</button>
+    </form>
+
 @endsection

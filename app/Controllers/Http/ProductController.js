@@ -49,6 +49,14 @@ class ProductController {
 
         response.route('products.index')
     }
+
+    async destroy ({ params, response }) {
+        await Product.query()
+                        .where('id', params.id)
+                        .delete()
+
+        response.route('products.index')
+    }
 }
 
 module.exports = ProductController
