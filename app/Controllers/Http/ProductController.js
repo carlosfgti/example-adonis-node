@@ -9,6 +9,14 @@ class ProductController {
         return view.render('products.index', { products: products.toJSON() })
     }
 
+    async show ({ params, view }) {
+        const product = await Product.find(params.id)
+
+        return view.render('products.show', {
+            product: product.toJSON()
+        })
+    }
+
     create ({ response, view }) {
         return view.render('products.create')
     }

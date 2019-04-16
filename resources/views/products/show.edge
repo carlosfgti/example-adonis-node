@@ -1,0 +1,13 @@
+@layout('templates.main')
+
+@section('content')
+
+    <h1>Detalhes do produto: {{ product.title }}</h1>
+
+    <ul>
+        <li><b>Title</b>: {{ product.title }}</li>
+        <li><b>Description</b>: {{ product.description }}</li>
+        <li><b>Published</b>: {{ product.published == '1' ? 'Published' : 'Draft' }}</li>
+    </ul>
+
+@endsection

@@ -22,7 +22,8 @@
                     <td>{{ product.description }}</td>
                     <td>{{ product.published == '1' ? 'Published' : 'Draft' }}</td>
                     <td>
-                        <a href="{{ route('products.edit', { id: product.id }) }}">Edit</a>
+                            <a href="{{ route('products.edit', { id: product.id }) }}">Edit</a>
+                            <a href="{{ route('products.show', { id: product.id }) }}">Detalhes</a>
                     </td>
                 </tr>
             @else
