@@ -3,10 +3,16 @@
 const Product = use('App/Models/Product')
 
 class ProductController {
-    async index ({ request, response, view }) {
-        const products = await Product.all()        
+    async index ({ request, view }) {
+        const page = request.input('page', 1)
+        const totalPage = request.input('totalPage', 10)
+        
+        const products = await Product.query()
+                                        .paginate(page, totalPage)
 
-        return view.render('products.index', { products: products.toJSON() })
+        return view.render('products.index', {
+            products: products
+        })
     }
 
     async show ({ params, view }) {

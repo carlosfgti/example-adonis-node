@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            @each(product in products)
+            @each(product in products.rows)
                 <tr>
                     <td>{{ product.title }}</td>
                     <td>{{ product.description }}</td>
@@ -35,5 +35,8 @@
             @endeach
         </tbody>
     </table>
+
+    {{--  @!component('components.paginate', paginate = products)  --}}
+    @include('includes.paginate')
 
 @endsection
