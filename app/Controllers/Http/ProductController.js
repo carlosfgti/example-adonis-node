@@ -68,7 +68,7 @@ class ProductController {
             }
 
             data.image = productImage.clientName
-        }        
+        }       
 
         await Product.create(data)
 
