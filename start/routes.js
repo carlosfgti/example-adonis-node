@@ -23,5 +23,10 @@ Route.get('products/create', 'ProductController.create').as('products.create')
 Route.post('products', 'ProductController.store').as('products.store')
 Route.get('products/:id', 'ProductController.show').as('products.show')
 Route.get('products/:id/edit', 'ProductController.edit').as('products.edit')
-Route.put('products/:id', 'ProductController.update').as('products.update')
+
+Route
+    .put('products/:id', 'ProductController.update')
+    .as('products.update')
+    .validator('UpdateProduct')
+
 Route.delete('products/:id', 'ProductController.destroy').as('products.destroy')
