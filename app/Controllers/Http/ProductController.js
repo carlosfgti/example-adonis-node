@@ -33,7 +33,7 @@ class ProductController {
     async store ({ request, response, session }) {
         const data = request.only(['title', 'description', 'published']);
         data.published = data.published ? '1' : '0'
-
+        
         const rules = {
             title: 'required|unique:products|min:3|max:100',
             description: 'required|min:3|max:100',
@@ -53,18 +53,22 @@ class ProductController {
             types: ['image'],
             size: '1mb'
         })
+        
+        if (productImage) {
+            await productImage.move('public/uploads/products')
 
-        await productImage.move('public/uploads/products')
+            if (!productImage.moved()) {
+                session
+                    .withErrors({
+                        image: productImage.error().message
+                    })
+                    .flashAll()
 
-        if (!productImage.moved()) {
-            session
-                .withErrors({
-                    image: productImage.error().message
-                })
-                .flashAll()
+                return response.redirect('back')
+            }
 
-            return response.redirect('back')
-        }
+            data.image = productImage.clientName
+        }        
 
         await Product.create(data)
 
