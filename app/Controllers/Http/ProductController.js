@@ -1,5 +1,7 @@
 'use strict'
 
+const { validate }  = use('Validator')
+
 const Product = use('App/Models/Product')
 
 class ProductController {
@@ -27,10 +29,24 @@ class ProductController {
         return view.render('products.create')
     }
 
-    async store ({ request, response }) {
+    async store ({ request, response, session }) {
         const data = request.only(['title', 'description', 'published']);
-
         data.published = data.published ? '1' : '0'
+
+        const rules = {
+            title: 'required|unique:products|min:3|max:100',
+            description: 'required|min:3|max:100',
+        }
+
+        const validation = await validate(data, rules)
+
+        if (validation.fails()) {
+            session
+                .withErrors(validation.messages())
+                .flashAll()
+
+            return response.redirect('back')
+        }
 
         await Product.create(data)
 

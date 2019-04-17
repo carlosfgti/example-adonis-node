@@ -5,16 +5,7 @@
     <h1>Cadastrar Novo Produto</h1>
 
     <form action="{{ route('ProductController.store') }}" method="post">
-        {{ csrfField() }}
-
-        <input type="text" name="title" placeholder="Title:">
-        <input type="text" name="description" placeholder="Description:">
-        <input type="file" name="image">
-
-        <input type="checkbox" name="published" id="published" value="1">
-        <label for="published">Publicar?</label>
-
-        <button type="submit">Enviar</button>
+        @include('products._partials.form')
     </form>
 
 @endsection
