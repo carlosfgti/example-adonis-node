@@ -16,11 +16,11 @@
             </tr>
         </thead>
         <tbody>
-            @each(product in products.rows)
+            @each(product in products.data)
                 <tr>
                     <td>{{ product.title }}</td>
                     <td>{{ product.description }}</td>
-                    <td>{{ product.published == '1' ? 'Published' : 'Draft' }}</td>
+                    <td>{{ product.published }}</td>
                     <td>
                             <a href="{{ route('products.edit', { id: product.id }) }}">Edit</a>
                             <a href="{{ route('products.show', { id: product.id }) }}">Detalhes</a>

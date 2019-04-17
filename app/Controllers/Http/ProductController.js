@@ -12,9 +12,9 @@ class ProductController {
         
         const products = await Product.query()
                                         .paginate(page, totalPage)
-
+                                        
         return view.render('products.index', {
-            products: products
+            products: products.toJSON()
         })
     }
 
@@ -32,7 +32,6 @@ class ProductController {
 
     async store ({ request, response, session }) {
         const data = request.only(['title', 'description', 'published']);
-        data.published = data.published ? '1' : '0'
         
         const rules = {
             title: 'required|unique:products|min:3|max:100',
@@ -68,7 +67,7 @@ class ProductController {
             }
 
             data.image = productImage.clientName
-        }       
+        }
 
         await Product.create(data)
 
@@ -85,7 +84,6 @@ class ProductController {
 
     async update ({ params, request, response }) {
         const data = request.only(['title', 'description', 'published']);
-        data.published = data.published ? '1' : '0'
 
         await Product.query()
                         .where('id', params.id)

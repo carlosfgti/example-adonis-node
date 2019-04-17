@@ -10,7 +10,7 @@
 {{ elIf('<span>$self</span>', getErrorFor('image'), hasErrorFor('image')) }}
 
 <input type="checkbox" name="published" id="published" value="1"
-@if(product.published == '1')
+@if(product.published == 'Published')
   checked
 @endif
 >

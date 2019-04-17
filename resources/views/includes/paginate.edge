@@ -1,13 +1,13 @@
 <ul class="paginate">
-    @if(products.pages.page != '1')
+    @if(products.page != '1')
     <li>
-        <a href="?page={{ products.pages.page - 1 }}">Previous</a>
+        <a href="?page={{ products.page - 1 }}">Previous</a>
     </li>
     @endif
 
-    @if(products.pages.page != products.pages.lastPage)
+    @if(products.page != products.lastPage)
     <li>
-        <a href="?page={{ products.pages.page + 1 }}">Next</a>
+        <a href="?page={{ products.page + 1 }}">Next</a>
     </li>
     @endif    
 </ul>
