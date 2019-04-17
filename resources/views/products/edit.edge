@@ -4,7 +4,7 @@
 
     <h1>Editar {{ product.title }}</h1>
 
-    <form action="{{ route('ProductController.update', { id: product.id }) }}?_method=PUT" method="post">
+    <form action="{{ route('ProductController.update', { id: product.id }) }}?_method=PUT" method="post" enctype="multipart/form-data">
         @include('products._partials.form')
     </form>
 

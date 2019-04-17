@@ -1,6 +1,7 @@
 'use strict'
 
 const { validate }  = use('Validator')
+const Helpers = use('Helpers')
 
 const Product = use('App/Models/Product')
 
@@ -43,6 +44,23 @@ class ProductController {
         if (validation.fails()) {
             session
                 .withErrors(validation.messages())
+                .flashAll()
+
+            return response.redirect('back')
+        }
+
+        const productImage = request.file('image', {
+            types: ['image'],
+            size: '1mb'
+        })
+
+        await productImage.move('public/uploads/products')
+
+        if (!productImage.moved()) {
+            session
+                .withErrors({
+                    image: productImage.error().message
+                })
                 .flashAll()
 
             return response.redirect('back')
