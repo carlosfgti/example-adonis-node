@@ -8,9 +8,9 @@ class Product extends Model {
     static boot () {
         super.boot()
 
-        this.addHook('beforeCreate', async (productInstance) => {
-            productInstance.published = productInstance.published ? '1' : '0'
-        })
+        // this.addHook('beforeCreate', 'ProductHook.publishedFormat')
+        // this.addHook('beforeUpdate', 'ProductHook.publishedFormat')
+        this.addHook('beforeSave', 'ProductHook.publishedFormat')
     }
 
     getPublished (published) {

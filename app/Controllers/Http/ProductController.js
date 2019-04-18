@@ -85,9 +85,12 @@ class ProductController {
     async update ({ params, request, response }) {
         const data = request.only(['title', 'description', 'published']);
 
+        // Host bug update (bug with method save too):
+        data.published = data.published ? '1' : '0'
+
         await Product.query()
                         .where('id', params.id)
-                        .update(data)
+                        .update(data)       
 
         response.route('products.index')
     }
