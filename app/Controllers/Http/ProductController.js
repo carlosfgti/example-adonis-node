@@ -71,6 +71,8 @@ class ProductController {
 
         await Product.create(data)
 
+        session.flash({success: 'Product Created Success'})
+
         response.route('products.index')
     }
 
@@ -82,7 +84,7 @@ class ProductController {
         })
     }
 
-    async update ({ params, request, response }) {
+    async update ({ params, request, response, session }) {
         const data = request.only(['title', 'description', 'published']);
 
         // Host bug update (bug with method save too):
@@ -92,13 +94,17 @@ class ProductController {
                         .where('id', params.id)
                         .update(data)       
 
+        session.flash({success: 'Product Updated Success'})
+
         response.route('products.index')
     }
 
-    async destroy ({ params, response }) {
+    async destroy ({ params, response, session }) {
         await Product.query()
                         .where('id', params.id)
                         .delete()
+
+        session.flash({success: 'Product Deleted Success'})
 
         response.route('products.index')
     }

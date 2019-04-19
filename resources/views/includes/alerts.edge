@@ -1,0 +1,11 @@
+@if(old('message'))
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> {{ old('message') }}
+    </div>
+@endif
+
+@if(old('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> {{ old('success') }}
+    </div>
+@endif
