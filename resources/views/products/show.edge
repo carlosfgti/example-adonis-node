@@ -7,13 +7,13 @@
     <ul>
         <li><b>Title</b>: {{ product.title }}</li>
         <li><b>Description</b>: {{ product.description }}</li>
-        <li><b>Published</b>: {{ product.published == '1' ? 'Published' : 'Draft' }}</li>
+        <li><b>Published</b>: {{ product.published }}</li>
     </ul>
 
     <form action="/products/{{ product.id }}?_method=DELETE" method="post">
         {{ csrfField() }}
         
-        <button type="submit">Deletar</button>
+        <button type="submit" class="btn btn-danger">Deletar</button>
     </form>
 
 @endsection
