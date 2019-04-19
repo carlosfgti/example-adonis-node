@@ -1,19 +1,29 @@
 {{ csrfField() }}
 
-<input type="text" name="title" placeholder="Title:" value="{{ product.title || old('title') }}">
-{{ elIf('<span>$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
+<div class="form-group">
+    <input type="text" name="title" placeholder="Title:" value="{{ product.title || old('title') }}" class="form-control">
+    {{ elIf('<span class="text-warning">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
+</div>
 
-<input type="text" name="description" placeholder="Description:" value="{{ product.description || old('description') }}">
-{{ elIf('<span>$self</span>', getErrorFor('description'), hasErrorFor('description')) }}
+<div class="form-group">
+    <input type="text" name="description" placeholder="Description:" value="{{ product.description || old('description') }}" class="form-control">
+    {{ elIf('<span class="text-warning">$self</span>', getErrorFor('description'), hasErrorFor('description')) }}
+</div>
 
-<input type="file" name="image">
-{{ elIf('<span>$self</span>', getErrorFor('image'), hasErrorFor('image')) }}
+<div class="form-group">
+    <input type="file" name="image" class="form-control">
+    {{ elIf('<span class="text-warning">$self</span>', getErrorFor('image'), hasErrorFor('image')) }}
+</div>
 
-<input type="checkbox" name="published" id="published" value="1"
-@if(product.published == 'Published')
-  checked
-@endif
->
-<label for="published">Publicar?</label>
+<div class="form-group">
+    <input type="checkbox" name="published" id="published" value="1"
+    @if(product.published == 'Published')
+      checked
+    @endif
+    >
+    <label for="published">Published?</label>
+</div>
 
-<button type="submit">Enviar</button>
+<div class="form-group">
+    <button type="submit" class="btn btn-dark">Send</button>
+</div>

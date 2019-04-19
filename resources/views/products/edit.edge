@@ -1,8 +1,9 @@
 @layout('templates.main')
 
 @section('content')
+    @set('title', 'Edit Product')
 
-    <h1>Editar {{ product.title }}</h1>
+    <h1>Edit Product: {{ product.title }}</h1>
 
     <form action="{{ route('ProductController.update', { id: product.id }) }}?_method=PUT" method="post" enctype="multipart/form-data">
         @include('products._partials.form')
