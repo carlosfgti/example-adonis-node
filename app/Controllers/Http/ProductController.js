@@ -14,7 +14,7 @@ class ProductController {
                                         .paginate(page, totalPage)
                                         
         return view.render('products.index', {
-            products: products.toJSON()
+            data: products.toJSON()
         })
     }
 

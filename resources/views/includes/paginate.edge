@@ -1,14 +1,14 @@
 <nav>
     <ul class="pagination">
-        @if(products.page != '1')
+        @if(data.page != '1')
         <li class="page-item">
-            <a class="page-link" href="?page={{ products.page - 1 }}">Previous</a>
+            <a class="page-link" href="?page={{ data.page - 1 }}">Previous</a>
         </li>
         @endif
     
-        @if(products.page != products.lastPage)
+        @if(data.page != data.lastPage)
         <li class="page-item">
-            <a class="page-link" href="?page={{ products.page + 1 }}">Next</a>
+            <a class="page-link" href="?page={{ data.page + 1 }}">Next</a>
         </li>
         @endif    
     </ul>
