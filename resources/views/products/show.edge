@@ -5,6 +5,13 @@
     <h1>Detalhes do produto: {{ product.title }}</h1>
 
     <ul>
+        <li>
+            @if(product.image)
+                <img src="/uploads/products/{{ product.image }}" alt="{{ product.title }}" style="max-width:120px;">
+            @else
+                <img src="/imgs/no-image.png" alt="{{ product.title }}" style="max-width:120px;">
+            @endif
+        </li>
         <li><b>Title</b>: {{ product.title }}</li>
         <li><b>Description</b>: {{ product.description }}</li>
         <li><b>Published</b>: {{ product.published }}</li>
