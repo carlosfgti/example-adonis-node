@@ -66,8 +66,6 @@ class ProductController {
 
                 return response.redirect('back')
             }
-
-            data.image = productImage.clientName
         }
 
         await Product.create(data)
@@ -91,9 +89,37 @@ class ProductController {
         // Host bug update (bug with method save too):
         data.published = data.published ? '1' : '0'
 
-        await Product.query()
-                        .where('id', params.id)
-                        .update(data)       
+        const product = await Product.find(params.id)
+
+        const productImage = request.file('image', {
+            types: ['image'],
+            size: '1mb'
+        })
+        
+        if (productImage) {
+            await productImage.move('public/uploads/products')
+
+            if (!productImage.moved()) {
+                session
+                    .withErrors({
+                        image: productImage.error().message
+                    })
+                    .flashAll()
+
+                return response.redirect('back')
+            }
+
+            data.image = productImage.clientName
+
+            if (product.image) {
+                await new Filesystems().removeFile('products', product.image)
+            }
+
+            data.image = productImage.clientName
+        }
+
+        product.merge(data)
+        product.save()
 
         session.flash({success: 'Product Updated Success'})
 
