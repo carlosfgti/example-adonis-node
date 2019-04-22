@@ -15,6 +15,7 @@
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
+                <th scope="col">#</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Published?</th>
@@ -24,6 +25,13 @@
         <tbody>
             @each(product in data.data)
                 <tr>
+                    <td>
+                        @if(product.image)
+                            <img src="/uploads/products/{{ product.image }}" alt="{{ product.title }}" style="max-width:30px;">
+                        @else
+                            <img src="/imgs/no-image.png" alt="{{ product.title }}" style="max-width:30px;">
+                        @endif
+                    </td>
                     <td>{{ product.title }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.published }}</td>
