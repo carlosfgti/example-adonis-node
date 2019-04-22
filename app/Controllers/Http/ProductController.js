@@ -66,6 +66,8 @@ class ProductController {
 
                 return response.redirect('back')
             }
+
+            data.image = productImage.clientName
         }
 
         await Product.create(data)
@@ -108,8 +110,6 @@ class ProductController {
 
                 return response.redirect('back')
             }
-
-            data.image = productImage.clientName
 
             if (product.image) {
                 await new Filesystems().removeFile('products', product.image)
