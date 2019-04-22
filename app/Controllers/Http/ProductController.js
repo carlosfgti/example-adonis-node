@@ -1,6 +1,7 @@
 'use strict'
 
 const { validate }  = use('Validator')
+const Helpers = use('Helpers')
 
 const Product = use('App/Models/Product')
 const Filesystems = use('App/Utils/Filesystems')
@@ -55,7 +56,7 @@ class ProductController {
         })
         
         if (productImage) {
-            await productImage.move('public/uploads/products')
+            await productImage.move(Helpers.publicPath('/uploads/products'))
 
             if (!productImage.moved()) {
                 session
@@ -99,7 +100,7 @@ class ProductController {
         })
         
         if (productImage) {
-            await productImage.move('public/uploads/products')
+            await productImage.move(Helpers.publicPath('/uploads/products'))
 
             if (!productImage.moved()) {
                 session
