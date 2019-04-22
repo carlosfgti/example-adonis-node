@@ -11,6 +11,7 @@ class ProductController {
         const totalPage = request.input('totalPage', 10)
         
         const products = await Product.query()
+                                        .orderBy('id', 'DESC')
                                         .paginate(page, totalPage)
                                         
         return view.render('products.index', {
