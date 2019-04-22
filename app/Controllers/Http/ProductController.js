@@ -5,6 +5,7 @@ const Helpers = use('Helpers')
 
 const Product = use('App/Models/Product')
 const Filesystems = use('App/Utils/Filesystems')
+const { createSlug } = use('App/Helpers/helpers')
 
 class ProductController {
     async index ({ request, view }) {
@@ -55,8 +56,13 @@ class ProductController {
             size: '1mb'
         })
         
-        if (productImage) {
-            await productImage.move(Helpers.publicPath('/uploads/products'))
+        if (productImage) {            
+            const nameFile = createSlug(data.title) + '.' + productImage.extname
+            
+            await productImage.move(Helpers.publicPath('/uploads/products'), {
+                name: nameFile,
+                overwrite: true
+            })
 
             if (!productImage.moved()) {
                 session
@@ -68,7 +74,7 @@ class ProductController {
                 return response.redirect('back')
             }
 
-            data.image = productImage.clientName
+            data.image = nameFile // productImage.clientName
         }
 
         await Product.create(data)
@@ -99,8 +105,13 @@ class ProductController {
             size: '1mb'
         })
         
-        if (productImage) {
-            await productImage.move(Helpers.publicPath('/uploads/products'))
+        if (productImage) {                       
+            const nameFile = createSlug(data.title) + '.' + productImage.extname
+            
+            await productImage.move(Helpers.publicPath('/uploads/products'), {
+                name: nameFile,
+                overwrite: true
+            })
 
             if (!productImage.moved()) {
                 session
@@ -116,7 +127,7 @@ class ProductController {
                 await new Filesystems().removeFile('products', product.image)
             }
 
-            data.image = productImage.clientName
+            data.image = nameFile // productImage.clientName
         }
 
         product.merge(data)
