@@ -2,6 +2,7 @@
 
 const { validate }  = use('Validator')
 const Helpers = use('Helpers')
+const Drive = use('Drive')
 
 const Product = use('App/Models/Product')
 
@@ -100,9 +101,17 @@ class ProductController {
     }
 
     async destroy ({ params, response, session }) {
-        await Product.query()
-                        .where('id', params.id)
-                        .delete()
+        const product = await Product.find(params.id)
+
+        // Remove image product (if exists)
+        if (product.image) {
+            const path = Helpers.publicPath(`uploads/products/${product.image}`)
+            const asImage = await Drive.exists(path)
+            if (asImage)
+                await Drive.delete(path)
+        }
+
+        await product.delete()
 
         session.flash({success: 'Product Deleted Success'})
 
