@@ -54,7 +54,9 @@ class CategoryController {
     }
 
     async update ({ params, request, response, session }) {
-        const data = request.only(['title', 'description']);
+        const data = request.only(['title', 'description'])
+
+        data.slug = createSlug(data.title)
 
         const category = await Category.findOrFail(params.id)
         category.merge(data)

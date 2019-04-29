@@ -1,12 +1,12 @@
 {{ csrfField() }}
 
 <div class="form-group">
-    <input type="text" name="title" placeholder="Title:" value="{{ product.title || old('title') }}" class="form-control">
+    <input type="text" name="title" placeholder="Title:" value="{{ category.title || old('title') }}" class="form-control">
     {{ elIf('<span class="text-warning">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
 </div>
 
 <div class="form-group">
-    <input type="text" name="description" placeholder="Description:" value="{{ product.description || old('description') }}" class="form-control">
+    <input type="text" name="description" placeholder="Description:" value="{{ category.description || old('description') }}" class="form-control">
     {{ elIf('<span class="text-warning">$self</span>', getErrorFor('description'), hasErrorFor('description')) }}
 </div>
 

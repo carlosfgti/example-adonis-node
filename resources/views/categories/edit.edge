@@ -1,0 +1,12 @@
+@layout('templates.main')
+
+@section('content')
+    @set('title', 'Edit Category')
+
+    <h1>Edit Category: {{ category.title }}</h1>
+
+    <form action="{{ route('CategoryController.update', { id: category.id }) }}?_method=PUT" method="post">
+        @include('categories._partials.form')
+    </form>
+
+@endsection
