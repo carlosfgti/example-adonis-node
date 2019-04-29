@@ -13,6 +13,10 @@ class Product extends Model {
         this.addHook('beforeSave', 'ProductHook.publishedFormat')
     }
 
+    category () {
+        return this.belongsTo('App.Models.Category')
+    }
+
     getPublished (published) {
         return  published == '1' ? 'Published' : 'Draft'
     }
