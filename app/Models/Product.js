@@ -14,7 +14,7 @@ class Product extends Model {
     }
 
     category () {
-        return this.belongsTo('App.Models.Category')
+        return this.belongsTo('App/Models/Category')
     }
 
     getPublished (published) {

@@ -4,6 +4,7 @@ const { validate }  = use('Validator')
 const Helpers = use('Helpers')
 
 const Product = use('App/Models/Product')
+const Category = use('App/Models/Category')
 const Filesystems = use('App/Utils/Filesystems')
 const { createSlug } = use('App/Helpers/helpers')
 
@@ -13,6 +14,7 @@ class ProductController {
         const totalPage = request.input('totalPage', 10)
         
         const products = await Product.query()
+                                        .with('category')
                                         .orderBy('id', 'DESC')
                                         .paginate(page, totalPage)
                                         
@@ -29,14 +31,19 @@ class ProductController {
         })
     }
 
-    create ({ response, view }) {
-        return view.render('products.create')
+    async create ({ view }) {
+        const categories = await Category.all()
+
+        return view.render('products.create', {
+            categories: categories.toJSON()
+        })
     }
 
     async store ({ request, response, session }) {
-        const data = request.only(['title', 'description', 'published']);
+        const data = request.only(['title', 'description', 'published', 'category_id']);
         
         const rules = {
+            category_id: 'required',
             title: 'required|unique:products|min:3|max:100',
             description: 'required|min:3|max:100',
         }
@@ -98,8 +105,11 @@ class ProductController {
     async edit ({ params, view }) {
         const product = await Product.find(params.id)
 
+        const categories = await Category.all()
+
         return view.render('products.edit', {
-            product: product.toJSON()
+            product: product.toJSON(),
+            categories: categories.toJSON()
         })
     }
 

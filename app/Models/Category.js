@@ -6,7 +6,7 @@ const Model = use('Model')
 class Category extends Model {
 
     products () {
-        return this.hasMany('App.Models.Product')
+        return this.hasMany('App/Models/Product')
     }
 
 }

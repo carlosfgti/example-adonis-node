@@ -5,6 +5,7 @@ class UpdateProduct {
     const product = this.ctx.request.post()    
 
     return {
+      category_id: 'required',
       title: `required|min:3|max:100|unique:products,title,title,${product.title}`,
       description: 'required|min:3|max:100',
     }

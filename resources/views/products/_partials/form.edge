@@ -1,6 +1,21 @@
 {{ csrfField() }}
 
 <div class="form-group">
+    <select name="category_id" class="form-control">
+        <option value="">Choice Category</option>
+        @each(category in categories)
+            <option value="{{ category.id }}"
+            @if(old('category_id') == category.id || product.category_id == category.id)
+              selected
+            @endif
+            >{{ category.title }}</option>
+        @endeach
+        
+    </select>
+    {{ elIf('<span class="text-warning">$self</span>', getErrorFor('category_id'), hasErrorFor('category_id')) }}
+</div>
+
+<div class="form-group">
     <input type="text" name="title" placeholder="Title:" value="{{ product.title || old('title') }}" class="form-control">
     {{ elIf('<span class="text-warning">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
 </div>
