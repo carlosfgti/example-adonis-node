@@ -7,6 +7,10 @@ class ProductSchema extends Schema {
   up () {
     this.create('products', (table) => {
       table.increments()
+      table.integer('category_id')
+            .unsigned().references('id')
+            .inTable('categories')
+            .notNullable()
       table.string('title', 100).notNullable().unique()
       table.text('description').notNullable()
       table.string('image', 100).nullable()
