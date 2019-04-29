@@ -10,11 +10,11 @@
         <li><b>Description</b>: {{ category.description }}</li>
     </ul>
 
-    <form action="/categories/{{ category.id }}?_method=DELETE" method="post">
+    <form action="{{ route('CategoryController.destroy', { id: category.id }) }}?_method=DELETE" method="post">
         {{ csrfField() }}
         
         <button type="submit" class="btn btn-danger">
-            <i class="fas fa-trash"></i> Delete
+            <i class="fas fa-trash"></i> Delete {{ category.title }}
         </button>
     </form>
 
