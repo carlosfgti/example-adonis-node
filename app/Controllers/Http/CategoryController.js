@@ -36,6 +36,8 @@ class CategoryController {
     async store ({ request, response, session }) {
         const data = request.only(['title', 'description'])
 
+        data.slug = createSlug(data.title)
+
         await Category.create(data)
 
         session.flash({success: 'Category Created Success'})
