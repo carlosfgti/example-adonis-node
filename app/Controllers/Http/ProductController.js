@@ -41,7 +41,18 @@ class ProductController {
             description: 'required|min:3|max:100',
         }
 
-        const validation = await validate(data, rules)
+        const messages = {
+            'title.required': 'Precisa informar o título',
+            'title.min': 'Quantidade mínima de 3 caracteres',
+            'title.max': 'Quantidade mínima de 100 caracteres',
+            'title.unique': 'O título deve ser único',
+        
+            'description.required': 'A descrição deve ser informado',
+            'description.min': 'Quantidade mínima de 3 caracteres',
+            'description.max': 'Quantidade mínima de 100 caracteres',
+        }
+
+        const validation = await validate(data, rules, messages)
 
         if (validation.fails()) {
             session
