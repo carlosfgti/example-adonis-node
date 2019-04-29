@@ -1,0 +1,21 @@
+@layout('templates.main')
+
+@section('content')
+
+    <h1>Details Category: {{ category.title }}</h1>
+
+    <ul>
+        <li><b>Title</b>: {{ category.title }}</li>
+        <li><b>Slug</b>: {{ category.slug }}</li>
+        <li><b>Description</b>: {{ category.description }}</li>
+    </ul>
+
+    <form action="/categories/{{ category.id }}?_method=DELETE" method="post">
+        {{ csrfField() }}
+        
+        <button type="submit" class="btn btn-danger">
+            <i class="fas fa-trash"></i> Delete
+        </button>
+    </form>
+
+@endsection

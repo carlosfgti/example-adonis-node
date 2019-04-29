@@ -17,7 +17,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                <th scope="col">Description</th>
+                <th scope="col">Slug</th>
                 <th scope="col" width="100">Actions</th>
             </tr>
         </thead>
@@ -26,7 +26,7 @@
                 <tr>
                     <td>{{ category.id }}</td>
                     <td>{{ category.title }}</td>
-                    <td>{{ category.description }}</td>
+                    <td>{{ category.slug }}</td>
                     <td>
                         <a href="{{ route('categories.edit', { id: category.id }) }}" title="Edit" class="text-warning">
                             <i class="fas fa-edit"></i>
