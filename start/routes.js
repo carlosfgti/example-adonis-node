@@ -29,4 +29,10 @@ Route
     .validator('UpdateProduct')
 Route.delete('products/:id', 'ProductController.destroy').as('products.destroy')
 
-Route.resource('categories', 'CategoryController')
+Route
+    .resource('categories', 'CategoryController')
+    .validator(new Map([
+        [
+            ['categories.store', 'categories.update'], ['StoreUpdateCategory']
+        ]
+    ]))

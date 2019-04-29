@@ -2,8 +2,11 @@
 
 class StoreUpdateCategory {
   get rules () {
+    const category = this.ctx.request.post()    
+
     return {
-      // validation rules
+      title: `required|min:3|max:100|unique:categories,title,title,${category.title}`,
+      description: 'required|min:3|max:100',
     }
   }
 }
